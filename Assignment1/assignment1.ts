@@ -58,3 +58,56 @@ const band: Band = {
 
 };
 
+//Sort the members and retrieve the 'all'
+const getAll = (members: Array<Member>) => {
+
+    return members.sort((member1: Member, member2: Member) => {
+        let member1Name = member1.name.toLowerCase();
+        let member2Name = member2.name.toLowerCase();
+
+        return member1.age == member2.age ? member1Name.localeCompare(member2Name) : member2.age - member1.age;
+
+    }).map((member: Member) => (member.name.toLowerCase()));
+
+}
+
+// Retrieve the 'plays'
+const getPlays = (members: Array<Member>) => {
+    const plays: { [index: string]: Array<string> } = {};
+
+    members.forEach((member: Member) => {
+        member.plays.forEach((play) => {
+            if (plays[play]) {
+                plays[play]?.push(member.name.toLowerCase());
+            } else {
+                plays[play] = [];
+                plays[play].push(member.name.toLowerCase());
+            }
+        })
+    })
+
+    return plays;
+}
+
+//method to get the 'expected' result
+const getExpected = (band: Band) => {
+
+    //Get all the members by merging the past members' and current members' arrays
+    const allMembers = [...band.members.current, ...band.members.past];
+
+    //return the output
+    return {
+        members: {
+            past: band.members.past,
+            current: band.members.current,
+            all: getAll(allMembers),
+        },
+        plays: getPlays(allMembers)
+    }
+}
+
+// Get the 'expected' results
+const expected: Expected = getExpected(band);
+
+// Print the 'expected' results
+console.log(expected);
