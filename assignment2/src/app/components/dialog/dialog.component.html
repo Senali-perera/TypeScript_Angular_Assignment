@@ -1,0 +1,14 @@
+<div class="dialog-container">
+  <div class="dialog-title">
+    {{title}}
+    <span class="dialog-close" (click)="onCancelPressed()">✕</span>
+  </div>
+  <div class="dialog-content">
+    Dialog Content
+  </div>
+  <div class="dialog-footer">
+    <button (click)="onOkPressed()">Ok</button>
+  </div>
+</div>
+
+<div class="dialog-backdrop"></div>
