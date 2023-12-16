@@ -8,6 +8,7 @@ import {Component, Input} from '@angular/core';
   styleUrl: './dialog.component.css'
 })
 export class DialogComponent {
+
   @Input() title = "Dialog Title";
 
   onOkPressed(): void {

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterOutlet} from '@angular/router';
 import {DialogComponent} from "./components/dialog/dialog.component";
 
 @Component({
@@ -11,5 +11,9 @@ import {DialogComponent} from "./components/dialog/dialog.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'assignment2';
+  isDialogOpen: boolean = false;
+
+  openDialog(): void {
+    this.isDialogOpen = true;
+  }
 }

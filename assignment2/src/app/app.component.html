@@ -1,1 +1,2 @@
-<app-dialog title="Test Dialog"/>
+<app-dialog *ngIf="isDialogOpen" title="Test Dialog"/>
+<button (click)="openDialog()">Show Dialog</button>
