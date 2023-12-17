@@ -1,5 +1,17 @@
-<button (click)="openDialog(dialogTemplateWithText, {title: 'Dialog Title', buttonText: 'Submit'})">Show Dialog</button>
+<button (click)="openDialog(dialogTemplateWithText, {title: 'Dialog Title', buttonText: 'Close'})">Dialog with Text</button>
+<button (click)="openDialog(dialogTemplateWithForm, {title: 'Login', buttonText: 'Submit'})">Dialog with Form</button>
 
 <ng-template #dialogTemplateWithText>
   <div>Dialog box with description</div>
+</ng-template>
+
+<ng-template #dialogTemplateWithForm>
+  <div>
+    <form>
+      <label for="fName">First name:</label><br>
+      <input type="text" id="fName" class="input" value="John"><br><br>
+      <label for="lName">Last name:</label><br>
+      <input type="text" id="lName" class="input" value="Doe"><br><br>
+    </form>
+  </div>
 </ng-template>
