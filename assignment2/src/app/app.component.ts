@@ -1,8 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, TemplateRef} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
-import {DialogComponent} from "./components/dialog/dialog.component";
+import {DialogComponent} from "./components/dialog/view/dialog.component";
+import {DialogService} from "./components/dialog/service/dialog-service.service";
+import {OptionType} from "./components/dialog/utils/types";
 
+/*
+* App Component
+*
+* This demonstrates the possible Dialog box options
+*/
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -11,9 +18,21 @@ import {DialogComponent} from "./components/dialog/dialog.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  isDialogOpen: boolean = false;
 
-  openDialog(): void {
-    this.isDialogOpen = true;
+  constructor(private dialogService: DialogService) {
+  }
+
+  /*
+  * Open Dialog function
+  *
+  * dialogTemplate - accepts ng-template and passes to the service
+  * options - accepts an Options object with title and buttonText
+  *
+  * This function contains the service call to trigger the Dialog box.
+  */
+  openDialog(dialogTemplate: TemplateRef<any>, options?: OptionType): void {
+    this.dialogService.openDialog(dialogTemplate, options)?.subscribe((action: string) => {
+      console.log(action)
+    })
   }
 }

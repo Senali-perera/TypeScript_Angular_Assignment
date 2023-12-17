@@ -1,2 +1,5 @@
-<app-dialog *ngIf="isDialogOpen" title="Test Dialog"/>
-<button (click)="openDialog()">Show Dialog</button>
+<button (click)="openDialog(dialogTemplateWithText, {title: 'Dialog Title', buttonText: 'Submit'})">Show Dialog</button>
+
+<ng-template #dialogTemplateWithText>
+  <div>Dialog box with description</div>
+</ng-template>
