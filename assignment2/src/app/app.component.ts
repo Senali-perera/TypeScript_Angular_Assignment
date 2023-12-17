@@ -4,6 +4,7 @@ import {RouterOutlet} from '@angular/router';
 import {DialogComponent} from "./components/dialog/view/dialog.component";
 import {DialogService} from "./components/dialog/service/dialog-service.service";
 import {OptionType} from "./components/dialog/utils/types";
+import {TestComponent} from "./components/test/test.component";
 
 /*
 * App Component
@@ -13,7 +14,7 @@ import {OptionType} from "./components/dialog/utils/types";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, DialogComponent],
+  imports: [CommonModule, RouterOutlet, DialogComponent, TestComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
