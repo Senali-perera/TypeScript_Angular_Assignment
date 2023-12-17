@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-dialog',
@@ -9,13 +9,21 @@ import {Component, Input} from '@angular/core';
 })
 export class DialogComponent {
 
-  @Input() title = "Dialog Title";
+  @Input() title: string = "Dialog Title";
+  @Input() buttonText?: string = "OK";
 
-  onOkPressed(): void {
-    console.log("Ok Pressed");
+  @Output() dialogCancelEvent: EventEmitter<any> = new EventEmitter();
+  @Output() dialogCustomEvent: EventEmitter<any> = new EventEmitter();
+
+  constructor(private elementRef: ElementRef) {}
+
+  customButtonPressed(): void {
+    this.elementRef.nativeElement.remove();
+    this.dialogCustomEvent.emit();
   }
 
   onCancelPressed(): void {
-    console.log("Cancel Pressed");
+    this.elementRef.nativeElement.remove();
+    this.dialogCancelEvent.emit();
   }
 }

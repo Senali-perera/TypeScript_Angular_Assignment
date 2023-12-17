@@ -4,10 +4,10 @@
     <span class="dialog-close" (click)="onCancelPressed()">✕</span>
   </div>
   <div class="dialog-content">
-    Dialog Content
+    <ng-content></ng-content>
   </div>
   <div class="dialog-footer">
-    <button (click)="onOkPressed()">Ok</button>
+    <button (click)="customButtonPressed()">{{buttonText}}</button>
   </div>
 </div>
 
