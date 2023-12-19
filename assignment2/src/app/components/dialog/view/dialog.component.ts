@@ -19,7 +19,6 @@ import {Component, ElementRef, EventEmitter, Input, Output} from '@angular/core'
   styleUrl: './dialog.component.css'
 })
 export class DialogComponent {
-
   @Input() title: string = "Dialog Title";
   @Input() buttonText?: string = "OK";
 
