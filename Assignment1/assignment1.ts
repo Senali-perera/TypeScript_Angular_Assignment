@@ -14,6 +14,10 @@ type Band = {
 
 }
 
+type PlayType = {
+    [index: string]: Array<string>
+}
+
 // Type for 'expected'
 type Expected = {
     members: {
@@ -21,10 +25,7 @@ type Expected = {
         past: Array<Member>,
         all: Array<string>
     },
-    plays: {
-        [index: string]: Array<string>
-    }
-
+    plays: PlayType
 }
 
 // initialise 'band' variable
@@ -34,23 +35,23 @@ const band: Band = {
 
         current: [
 
-            { name: 'Sascha', age: 59, plays: ['vocals', 'synth', 'guitar', 'bass'] },
+            {name: 'Sascha', age: 59, plays: ['vocals', 'synth', 'guitar', 'bass']},
 
-            { name: 'Lucia', age: 49, plays: ['vocals', 'synth'] },
+            {name: 'Lucia', age: 49, plays: ['vocals', 'synth']},
 
-            { name: 'Jules', age: 53, plays: ['guitar', 'bass', 'synth'] },
+            {name: 'Jules', age: 53, plays: ['guitar', 'bass', 'synth']},
 
-            { name: 'Steve', age: 55, plays: ['guitar'] }
+            {name: 'Steve', age: 55, plays: ['guitar']}
 
         ],
 
         past: [
 
-            { name: 'Raymond', age: 57, plays: ['vocals', 'synth'] },
+            {name: 'Raymond', age: 57, plays: ['vocals', 'synth']},
 
-            { name: 'En', age: 52, plays: ['vocals', 'drums', 'guitar', 'synth'] },
+            {name: 'En', age: 52, plays: ['vocals', 'drums', 'guitar', 'synth']},
 
-            { name: 'Gunter', age: 57, plays: ['guitar', 'synth'] }
+            {name: 'Gunter', age: 57, plays: ['guitar', 'synth']}
 
         ]
 
@@ -61,7 +62,7 @@ const band: Band = {
 //Sort the members and retrieve the 'all'
 const getAll = (members: Array<Member>) => {
 
-    return members.sort((member1: Member, member2: Member) => {
+    return [...members].sort((member1: Member, member2: Member) => {
         let member1Name = member1.name.toLowerCase();
         let member2Name = member2.name.toLowerCase();
 
@@ -72,28 +73,26 @@ const getAll = (members: Array<Member>) => {
 }
 
 // Retrieve the 'plays'
-const getPlays = (members: Array<Member>) => {
-    const plays: { [index: string]: Array<string> } = {};
+const getPlays = (members: Array<Member>): PlayType => {
+    const plays: PlayType = {};
 
-    members.forEach((member: Member) => {
-        member.plays.forEach((play) => {
-            if (plays[play]) {
-                plays[play]?.push(member.name.toLowerCase());
-            } else {
+    members.forEach((member: Member): void => {
+        member.plays.forEach((play: string): void => {
+            if (!plays[play]) {
                 plays[play] = [];
-                plays[play].push(member.name.toLowerCase());
             }
+            plays[play].push(member.name.toLowerCase());
+
         })
     })
-
     return plays;
 }
 
 //method to get the 'expected' result
-const getExpected = (band: Band) => {
+const getExpected = (band: Band): Expected => {
 
     //Get all the members by merging the past members' and current members' arrays
-    const allMembers = [...band.members.current, ...band.members.past];
+    const allMembers: Member[] = [...band.members.current, ...band.members.past];
 
     //return the output
     return {
