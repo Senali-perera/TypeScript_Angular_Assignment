@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input} from '@angular/core';
 import {NgIf} from "@angular/common";
+import {DataUtils} from "../../../utils/data-utils";
 
 /*
 * Dialog Component
@@ -22,8 +23,8 @@ import {NgIf} from "@angular/common";
   styleUrl: './dialog.component.css'
 })
 export class DialogComponent {
-  @Input() title: string = "Dialog Title";
-  @Input() buttonText?: string = "OK";
+  @Input() title: string = DataUtils.DEFAULT_TITLE;
+  @Input() buttonText?: string = DataUtils.DEFAULT_CUSTOM_BTN_LABEL;
   @Input() customButtonHandler?: () => void;
   @Input() cancelOnBackgroundClick?: boolean = false;
   @Input() hideCustomButton?: boolean = false;
