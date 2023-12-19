@@ -32,8 +32,12 @@ export class AppComponent {
   * This function contains the service call to trigger the Dialog box.
   */
   openDialog(dialogTemplate: TemplateRef<any>, options?: OptionType): void {
-    this.dialogService.openDialog(dialogTemplate, options)?.subscribe((action: string) => {
-      console.log(action)
-    })
+    this.dialogService.openDialog(dialogTemplate, options);
+  }
+
+  dummyFunction(): void {
+    const fName = (document.getElementById('fName') as HTMLInputElement)?.value;
+    const lName = (document.getElementById('lName') as HTMLInputElement)?.value;
+    console.log(fName, lName);
   }
 }

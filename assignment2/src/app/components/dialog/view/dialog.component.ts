@@ -1,4 +1,5 @@
-import {Component, ElementRef, EventEmitter, Input, Output} from '@angular/core';
+import {Component, ElementRef, Input} from '@angular/core';
+import {NgIf} from "@angular/common";
 
 /*
 * Dialog Component
@@ -14,16 +15,18 @@ import {Component, ElementRef, EventEmitter, Input, Output} from '@angular/core'
 @Component({
   selector: 'app-dialog',
   standalone: true,
-  imports: [],
+  imports: [
+    NgIf
+  ],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css'
 })
 export class DialogComponent {
   @Input() title: string = "Dialog Title";
   @Input() buttonText?: string = "OK";
-
-  @Output() dialogCancelEvent: EventEmitter<any> = new EventEmitter();
-  @Output() dialogCustomEvent: EventEmitter<any> = new EventEmitter();
+  @Input() customButtonHandler?: () => void;
+  @Input() cancelOnBackgroundClick?: boolean = false;
+  @Input() hideCustomButton?: boolean = false;
 
   constructor(private elementRef: ElementRef) {
   }
@@ -32,8 +35,10 @@ export class DialogComponent {
   * This function cancels the Dialog box and emits the custom button event
   */
   customButtonPressed(): void {
-    this.elementRef.nativeElement.remove();
-    this.dialogCustomEvent.emit();
+    if (this.customButtonHandler) {
+      this.customButtonHandler();
+    }
+    this.onCancelPressed();
   }
 
   /*
@@ -41,6 +46,5 @@ export class DialogComponent {
   */
   onCancelPressed(): void {
     this.elementRef.nativeElement.remove();
-    this.dialogCancelEvent.emit();
   }
 }

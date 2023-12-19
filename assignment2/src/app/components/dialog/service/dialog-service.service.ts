@@ -7,7 +7,6 @@ import {
   Injector,
   TemplateRef
 } from '@angular/core';
-import {Subject} from "rxjs";
 import {DOCUMENT} from "@angular/common";
 import {DialogComponent} from "../view/dialog.component";
 import {OptionType} from "../utils/types";
@@ -19,8 +18,6 @@ import {OptionType} from "../utils/types";
 */
 @Injectable()
 export class DialogService {
-  private dialogNotifier?: Subject<string>;
-
   constructor(private resolver: ComponentFactoryResolver, private injector: Injector, @Inject(DOCUMENT) private document: Document) {
   }
 
@@ -34,30 +31,11 @@ export class DialogService {
 
     dialogComponent.instance.title = options?.title || "Dialog Title";
     dialogComponent.instance.buttonText = options?.buttonText || "OK";
-
-    dialogComponent.instance.dialogCancelEvent.subscribe(() => this.cancelDialog());
-    dialogComponent.instance.dialogCustomEvent.subscribe(() => this.customButtonPressed());
+    dialogComponent.instance.customButtonHandler = options?.customButtonHandler
+    dialogComponent.instance.cancelOnBackgroundClick = options?.cancelOnBackgroundClick;
+    dialogComponent.instance.hideCustomButton = options?.hideCustomButton;
 
     dialogComponent.hostView.detectChanges();
     this.document.body.appendChild((dialogComponent.location.nativeElement));
-
-    this.dialogNotifier = new Subject();
-
-    return this.dialogNotifier?.asObservable();
-  }
-
-  /*
-  * Cancel Dialog function which notify the cancel event
-  */
-  cancelDialog(): void {
-    this.dialogNotifier?.complete();
-  }
-
-  /*
-  * Custom button pressed function which notify the custom button event (DialogEvent)
-  */
-  customButtonPressed(): void {
-    this.dialogNotifier?.next("DialogEvent");
-    this.cancelDialog();
   }
 }

@@ -3,12 +3,12 @@
     <span id="dialog-title">{{title}}</span>
     <span class="dialog-close" (click)="onCancelPressed()">✕</span>
   </div>
-  <div class="dialog-content">
+  <div id="dialog-content" class="dialog-content">
     <ng-content></ng-content>
   </div>
-  <div class="dialog-footer">
+  <div *ngIf="!hideCustomButton" class="dialog-footer">
     <button id="dialog-custom-btn" (click)="customButtonPressed()">{{buttonText}}</button>
   </div>
 </div>
 
-<div class="dialog-backdrop"></div>
+<div (click)="cancelOnBackgroundClick ? onCancelPressed() : null" id="dialog-backdrop" class="dialog-backdrop"></div>
