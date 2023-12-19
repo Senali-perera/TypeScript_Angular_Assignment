@@ -3,6 +3,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {DialogComponent} from './dialog.component';
 import {By} from "@angular/platform-browser";
 import {DebugElement} from "@angular/core";
+import {DataUtils} from "../../../utils/data-utils";
 
 describe('DialogComponent', () => {
   let component: DialogComponent;
@@ -29,7 +30,7 @@ describe('DialogComponent', () => {
     );
 
     expect(messageContainer.nativeElement.textContent).toBe(
-      'Dialog Title'
+      DataUtils.DEFAULT_TITLE
     );
   });
 
@@ -39,7 +40,7 @@ describe('DialogComponent', () => {
     );
 
     expect(messageContainer.nativeElement.textContent).toBe(
-      'OK'
+      DataUtils.DEFAULT_CUSTOM_BTN_LABEL
     );
   });
 

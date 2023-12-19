@@ -10,6 +10,7 @@ import {
 import {DOCUMENT} from "@angular/common";
 import {DialogComponent} from "../view/dialog.component";
 import {OptionType} from "../utils/types";
+import {DataUtils} from "../../../utils/data-utils";
 
 /*
 * Dialog service
@@ -29,8 +30,8 @@ export class DialogService {
     const contentViewRef: EmbeddedViewRef<any> = content.createEmbeddedView(null);
     const dialogComponent: ComponentRef<DialogComponent> = dialogComponentFactory.create(this.injector, [contentViewRef.rootNodes]);
 
-    dialogComponent.instance.title = options?.title || "Dialog Title";
-    dialogComponent.instance.buttonText = options?.buttonText || "OK";
+    dialogComponent.instance.title = options?.title || DataUtils.DEFAULT_TITLE;
+    dialogComponent.instance.buttonText = options?.buttonText || DataUtils.DEFAULT_CUSTOM_BTN_LABEL;
     dialogComponent.instance.customButtonHandler = options?.customButtonHandler
     dialogComponent.instance.cancelOnBackgroundClick = options?.cancelOnBackgroundClick;
     dialogComponent.instance.hideCustomButton = options?.hideCustomButton;

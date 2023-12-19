@@ -1,12 +1,12 @@
 <button id="btn-text-alert"
-        (click)="openDialog(dialogTemplateWithText, {title: 'Dialog Title', cancelOnBackgroundClick: true})">
+        (click)="openDialog(dialogTemplateWithText, {title: DataUtils.TEXT_ALERT_TITLE, cancelOnBackgroundClick: true})">
   Dialog with Text
 </button>
 <button id="btn-form-alert"
-        (click)="openDialog(dialogTemplateWithForm, {title: 'Login', customButtonHandler: dummyFunction})">
+        (click)="openDialog(dialogTemplateWithForm, {title: DataUtils.FORM_ALERT_TITLE, customButtonHandler: dummyFunction})">
   Dialog with Form
 </button>
-<button id="btn-component-alert" (click)="openDialog(dialogTemplateWithComponent, {title: 'Component Title', hideCustomButton: true})">
+<button id="btn-component-alert" (click)="openDialog(dialogTemplateWithComponent, {title: DataUtils.COMPONENT_ALERT_TITLE, hideCustomButton: true})">
   Dialog with Component
 </button>
 

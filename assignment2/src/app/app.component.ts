@@ -5,6 +5,9 @@ import {DialogComponent} from "./components/dialog/view/dialog.component";
 import {DialogService} from "./components/dialog/service/dialog-service.service";
 import {OptionType} from "./components/dialog/utils/types";
 import {DemoComponent} from "./components/demo/demo.component";
+import {
+  DataUtils
+} from "./utils/data-utils";
 
 /*
 * App Component
@@ -40,4 +43,6 @@ export class AppComponent {
     const lName = (document.getElementById('lName') as HTMLInputElement)?.value;
     console.log(fName, lName);
   }
+
+  protected readonly DataUtils = DataUtils;
 }
