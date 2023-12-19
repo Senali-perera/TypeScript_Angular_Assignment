@@ -89,7 +89,7 @@ const getPlays = (members: Array<Member>): PlayType => {
 }
 
 //method to get the 'expected' result
-const getExpected = (band: Band): FormattedBand => {
+const getFormattedBand = (band: Band): FormattedBand => {
 
     //Get all the members by merging the past members' and current members' arrays
     const allMembers: Member[] = [...band.members.current, ...band.members.past];
@@ -106,7 +106,7 @@ const getExpected = (band: Band): FormattedBand => {
 }
 
 // Get the 'expected' results
-const expected: FormattedBand = getExpected(band);
+const expected: FormattedBand = getFormattedBand(band);
 
 // Print the 'expected' results
 console.log(expected);
